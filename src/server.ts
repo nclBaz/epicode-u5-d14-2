@@ -3,7 +3,7 @@ import listEndpoints from "express-list-endpoints"
 import mongoose from "mongoose"
 import { Server as SocketIOServer } from "socket.io"
 import { createServer } from "http" // CORE MODULE
-import { newConnectionHandler } from "./socket/index.js"
+import { newConnectionHandler } from "./socket/index"
 
 const expressServer = express()
 const port = process.env.PORT || 3001
@@ -20,7 +20,13 @@ io.on("connection", newConnectionHandler) // "connection" it is NOT a custom eve
 
 // *********************** ERROR HANDLERS *****************
 
-mongoose.connect(process.env.MONGO_CONNECTION)
+/* if (process.env.MONGO_CONNECTION) {
+  mongoose.connect(process.env.MONGO_CONNECTION)
+} else {
+  throw new Error("Mongo URL is missing!")
+} */
+
+mongoose.connect(process.env.MONGO_CONNECTION!)
 
 mongoose.connection.on("connected", () =>
   httpServer.listen(port, () => {
