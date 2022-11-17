@@ -5,7 +5,7 @@ import supertest from "supertest"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import { expressServer } from "../server"
-import ProductsModel from "../products/model"
+import ProductsModel from "../api/products/model"
 
 dotenv.config() // This command forces .env variables to be loaded into precess.env. This is the way to go when you can't use -r dotenv/config
 

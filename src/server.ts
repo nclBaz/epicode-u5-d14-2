@@ -2,7 +2,8 @@ import express from "express"
 import { Server as SocketIOServer } from "socket.io"
 import { createServer } from "http" // CORE MODULE
 import { newConnectionHandler } from "./socket/index"
-import productsRouter from "./products"
+import productsRouter from "./api/products"
+import usersRouter from "./api/users"
 import {
   badRequestErrorHandler,
   notFoundErrorHandler,
@@ -24,6 +25,7 @@ expressServer.use(express.json())
 
 // ************************* ENDPOINTS ********************
 expressServer.use("/products", productsRouter)
+expressServer.use("/users", usersRouter)
 
 // *********************** ERROR HANDLERS *****************
 expressServer.use(badRequestErrorHandler)
